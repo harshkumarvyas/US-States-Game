@@ -8,6 +8,7 @@ screen.addshape(image)
 turtle.shape(image)
 
 
+
 data = pandas.read_csv("50_states.csv")
 all_states = data.state.to_list()
 guess_states = []
@@ -17,10 +18,10 @@ while len(guess_states) < 50:
     
     
     if answer_state == "Exit":
-        missing_state =[]
-        for state in all_states:
-            if state not in guess_states:
-                missing_state.append(state)
+        missing_state =[state for state in all_states if state not in guess_states]
+        # for state in all_states:
+        #     if state not in guess_states:
+        #         missing_state.append(state)
         new_csv = pandas.DataFrame(missing_state)
         new_csv.to_csv("missing_state.csv")
         break
